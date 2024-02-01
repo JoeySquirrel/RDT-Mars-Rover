@@ -1,7 +1,8 @@
 class Plateau():
-  def __init__(self,length,width):
-    self.__length = length
-    self.__width = width
+  def __init__(self,coords):
+    
+    self.__length = int(coords.split(" ")[0])
+    self.__width = int(coords.split(" ")[1])
     self.__rovers = []
 
 
@@ -138,21 +139,22 @@ class Direction():
   
     
   def right(self):
-    if self.__pointer + 1 < 3:
+    if self.__pointer + 1 > 3:
       self.__pointer = 0
     else: 
       self.__pointer += 1
 
   def getdirection(self):
-    return self.__values[self.__pointer]
+    try:
+      return self.__values[self.__pointer]
+    except:
+      print(self.__pointer)
 
 
-
-print("Enter length of Plateau")
-length = int(input())
-print("Enter width of Plateau")
-width = int(input())
-p = Plateau(length,width)
+print("Enter the top right coordinates of the plateau.")
+print("Length then width, with a space in between e.g 7 7:")
+coords = input()
+p = Plateau(coords)
 
 r = Rover()
 
